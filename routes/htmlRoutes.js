@@ -10,6 +10,27 @@ module.exports = function(app) {
       });
     });
   });
+  app.get("/region",function(req,res){
+    db.region.findAll({}).then(function(data){
+      res.render("ind",{
+        reg:data,
+
+      });
+    })
+  })
+  app.get("/destination/:id",function(req,res){
+    db.destination.findAll({
+      where :{
+        id:req.params.id
+      }
+    }).then(function(data){
+      
+      res.render("ind",{
+       result:data,
+       
+      });
+    });
+  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
